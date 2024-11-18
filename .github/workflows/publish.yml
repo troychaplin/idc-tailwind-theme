@@ -1,42 +1,37 @@
-name: Publish
+name: Publish to npm
 
 # on:
 #   push:
+#     branches:
+#       - main # Change this to your default branch if it's not 'main'
 #     tags:
-#       - "*"
+#       - "v*" # Triggers on tags like v1.0.0
 
 on:
   push:
     branches:
       - develop
 
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v3
-#       - uses: actions/setup-node@v3
-#         with:
-#           node-version: "21.x"
-#           registry-url: https://registry.npmjs.org/
-#       - run: npm publish --access public
-#         env:
-#           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
-
 jobs:
   publish:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v2
         with:
-          node-version: "21.x"
+          node-version: "21"
 
       - name: Authenticate with npm
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}" > ~/.npmrc
 
-      - name: Publish package to npm
-        run: npm publish --access public
+      - name: Install dependencies
+        run: npm install
+
+      - name: Publish to npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
