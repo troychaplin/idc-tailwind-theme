@@ -2,7 +2,7 @@
   "name": "@troychaplin79/idc-tailwind",
   "description": "Tailwind CSS plugin to add the theme globals to the IDC UI Kit",
   "author": "Troy Chaplin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": false,
   "license": "MIT",
   "main": "index.js",
