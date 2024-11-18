@@ -2,8 +2,8 @@ name: Publish to npm
 
 on:
   push:
-    tags:
-      - "*"
+    branches:
+      - main
 
 jobs:
   publish:
@@ -19,6 +19,9 @@ jobs:
 
       - name: Authenticate with npm
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}" > ~/.npmrc
+
+      - name: Install dependencies
+        run: npm install
 
       - name: Publish package to npm
         run: npm publish --access public
