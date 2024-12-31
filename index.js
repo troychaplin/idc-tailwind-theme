@@ -2,9 +2,98 @@
 module.exports = {
   theme: {
     extend: {
+      fontFamily: {
+        open: ['Open Sans', 'sans-serif'],
+      },
+      typography: (theme) => ({
+        DEFAULT: {
+          css: [
+            {
+              '--tw-prose-body': theme('colors.idc-black[700]'),
+              '--tw-prose-headings': theme('colors.idc-black[800]'),
+              '--tw-prose-links': theme('colors.idc-orange[700]'),
+              '--tw-prose-bullets': theme('colors.idc-black[700]'),
+              // "--tw-prose-quotes": theme("colors.pink[900]"),
+              // "--tw-prose-quote-borders": theme("colors.pink[300]"),
+              // "--tw-prose-captions": theme("colors.pink[700]"),
+              // "--tw-prose-code": theme("colors.pink[900]"),
+              // "--tw-prose-pre-code": theme("colors.pink[100]"),
+            },
+            {
+              a: {
+                fontWeight: 600,
+                textDecoration: 'none',
+                '&:hover': {
+                  textDecoration: 'underline',
+                },
+              },
+              h1: {
+                fontWeight: '500',
+              },
+              h2: {
+                fontWeight: '500',
+                marginBottom: '1rem',
+              },
+              h3: {
+                fontWeight: '500',
+                marginBottom: '0.75rem',
+              },
+              h4: {
+                fontWeight: '500',
+                marginBottom: '0.5rem',
+              },
+              'h5, h6': {
+                fontWeight: '500',
+              },
+              'ul, ol': {
+                'margin-left': '2rem',
+              },
+              'ul ul, ol ol': {
+                'margin-left': '0',
+              },
+              'ol li li': {
+                'list-style-type': 'lower-alpha',
+              },
+              'ol li li li': {
+                'list-style-type': 'lower-roman',
+              },
+            },
+          ],
+        },
+        xl: {
+          css: [
+            {
+              h2: {
+                marginBottom: '1.25rem',
+              },
+              h3: {
+                marginBottom: '1rem',
+              },
+              h4: {
+                marginBottom: '0.5rem',
+              },
+            },
+          ],
+        },
+        lg: {
+          css: [
+            {
+              h2: {
+                marginBottom: '1.25rem',
+              },
+              h3: {
+                marginBottom: '1rem',
+              },
+              h4: {
+                marginBottom: '0.5rem',
+              },
+            },
+          ],
+        },
+      }),
       colors: {
         'idc-black': {
-          DEFAULT: '#191919',
+          DEFAULT: '#000000',
           50: '#f6f6f6',
           100: '#e7e7e7',
           200: '#d1d1d1',
@@ -15,7 +104,7 @@ module.exports = {
           700: '#4f4f4f',
           800: '#454545',
           900: '#3d3d3d',
-          950: '#191919',
+          950: '#000000',
         },
         'idc-blue': {
           DEFAULT: '#3678b9',
@@ -46,15 +135,43 @@ module.exports = {
           950: '#461102',
         },
       },
+      columnCount: {
+        1: '1',
+        2: '2',
+        3: '3',
+        4: '4',
+      },
+      gridTemplateColumns: {
+        '60-40': '60% auto',
+      },
       margin: {
         'offset-center': 'calc(-50vw + 50%)',
+      },
+      backgroundImage: {
+        'white-blue-edge': 'linear-gradient(to bottom, #ffffff 50%, #e6eef8 50%)',
       },
     },
   },
   plugins: [
-    require('@tailwindcss/aspect-ratio'),
-    require('@tailwindcss/container-queries'),
-    require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
+    plugin(function ({ addUtilities }) {
+      addUtilities(
+        {
+          '.columns-1': {
+            columnCount: '1',
+          },
+          '.columns-2': {
+            columnCount: '2',
+          },
+          '.columns-3': {
+            columnCount: '3',
+          },
+          '.columns-4': {
+            columnCount: '4',
+          },
+        },
+        {}
+      );
+    }),
   ],
 };
