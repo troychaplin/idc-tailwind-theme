@@ -7,6 +7,9 @@ module.exports = {
       fontFamily: {
         open: ['Open Sans', 'sans-serif'],
       },
+      screens: {
+        '4xl': '896px',
+      },
       typography: (theme) => ({
         DEFAULT: {
           css: [
