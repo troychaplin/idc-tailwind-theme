@@ -27,13 +27,8 @@ module.exports = {
             {
               a: {
                 fontWeight: 600,
-                padding: '2px',
-                backgroundColor: '#fff8eb',
                 textDecoration: 'none',
-
                 '&:hover': {
-                  color: '#1f3a5b',
-                  backgroundColor: '#e6eef8',
                   textDecoration: 'none',
                 },
               },
